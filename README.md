@@ -58,8 +58,13 @@ Simple use :
       <%= bar.item 'item', '#' %>
       <%= bar.divider( :vertical => true ) %>
       <%= bar.dropdown 'Title 1' do %>
+        <%= bar.header "Items a" %>
         <%= bar.item 'item 1', '#' %>
         <%= bar.divider %>
+        <%= bar.item 'item 2', '#' %>
+        <%= bar.item 'item 2', '#' %>
+        <%= bar.header "Items b" %>
+        <%= bar.item 'item 2', '#' %>
         <%= bar.item 'item 2', '#' %>
       <% end %>
     <% end %>
@@ -84,10 +89,14 @@ Or you can use like this :
           <span class="title">Title 2</span>
         <% end %>
         <%= bar.dropdown_menu( :right => true ) do %>
+          <%= bar.header do %>
+            <span class="title">Items a</span>
+          <% end %>
           <%= bar.item do %>
             <span class="title">Item 3</span>
           <% end %>
           <%= bar.item 'item 4', '#' %>
+          <%= bar.header "Items b" %>
           <%= bar.item '/link' do %>
             <span class="title">Item 5</span>
             <span class="count">15</span>

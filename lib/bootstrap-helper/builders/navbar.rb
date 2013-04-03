@@ -109,6 +109,12 @@ module BootstrapHelper
         template.content_tag :li, nil, class: klass
       end
       
+      def header(title = nil, &block)
+        body = title.nil? ? template.capture(self, &proc) : title
+        
+        template.content_tag :li, body, class: 'nav-header'
+      end
+      
     end
   end
 end
