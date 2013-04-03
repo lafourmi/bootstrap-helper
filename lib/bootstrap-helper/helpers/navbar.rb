@@ -7,7 +7,11 @@ module BootstrapHelper
       end
       
       def topbar(options = {}, &proc)
-        ::BootstrapHelper::Builders::Navbar.new(self,options.merge(top: true),&proc)
+        navbar(options.merge(top: true),&proc)
+      end
+      
+      def bottombar(options = {}, &proc)
+        navbar(options.merge(bottom: true),&proc)
       end
     end
   end

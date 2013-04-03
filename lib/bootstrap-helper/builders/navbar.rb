@@ -16,6 +16,7 @@ module BootstrapHelper
       def wrapper(options, buffer)
         navbar_class = ['navbar']
         navbar_class << 'navbar-fixed-top' if options[:top]
+        navbar_class << 'navbar-fixed-bottom' if options[:bottom]
         navbar_class << 'navbar-inverse' if options[:inverse]
         id = options[:id] || ''
         
@@ -90,7 +91,7 @@ module BootstrapHelper
           options = args[2] || {}
         end
         
-        klass = options[:class] || ''       
+        klass = options[:active] ? 'active' : ''
         template.content_tag(:li, class: klass) do
           template.link_to(body, url)
         end
@@ -101,6 +102,17 @@ module BootstrapHelper
           3.times.map { template.content_tag :span, nil, class: 'icon-bar' }.inject(:+)
         end
       end
+      
+      def divider(options = {})
+        klass = "divider#{options[:vertical] ? '-vertical' : ''}"
+        template.content_tag :li, nil, class: klass
+      end
+      
+      def header(title = nil, &block)
+        body = title.nil? ? template.capture(self, &proc) : title
+        template.content_tag :li, body, class: 'nav-header'
+      end
+      
     end
   end
 end
