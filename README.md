@@ -50,22 +50,22 @@ gem 'bootstrap-helper',git: 'git://github.com/niedhui/bootstrap-helper.git'
 Simple use :
 
 ```ruby
-  <% topbar do |bar| %>
+  <% navbar do |bar| %>
 
     <%= bar.brand_name "YourBrandName", root_path %>
     
     <%= bar.nav do %>
-      <%= bar.item 'item', '#' %>
+      <%= bar.item 'item', '#', { :active => true } %>
       <%= bar.divider( :vertical => true ) %>
       <%= bar.dropdown 'Title 1' do %>
         <%= bar.header "Items a" %>
         <%= bar.item 'item 1', '#' %>
+        <%= bar.item 'item 2', '#' %>
         <%= bar.divider %>
-        <%= bar.item 'item 2', '#' %>
-        <%= bar.item 'item 2', '#' %>
+        <%= bar.item 'item 3', '#' %>
         <%= bar.header "Items b" %>
-        <%= bar.item 'item 2', '#' %>
-        <%= bar.item 'item 2', '#' %>
+        <%= bar.item 'item 4', '#' %>
+        <%= bar.item 'item 5', '#' %>
       <% end %>
     <% end %>
     
@@ -82,7 +82,6 @@ Or you can use like this :
     <%= bar.brand_name "YourBrandName", root_path %>
 
     <%= bar.nav( :right => true ) do %>
-    
       <%= bar.dropdown( :class => 'highlight' ) do %>
         <%= bar.dropdown_title do %>
           <span class="count">10</span>
@@ -103,13 +102,12 @@ Or you can use like this :
           <% end %>
         <% end %>
       <% end %>
-      
     <% end %>
-  
+    
   <% end %>
 ```
 
-Different uses :
+Optional display variations :
 
 
 ```ruby

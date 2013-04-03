@@ -91,7 +91,7 @@ module BootstrapHelper
           options = args[2] || {}
         end
         
-        klass = options[:class] || ''       
+        klass = options[:active] ? 'active' : ''
         template.content_tag(:li, class: klass) do
           template.link_to(body, url)
         end
@@ -104,15 +104,12 @@ module BootstrapHelper
       end
       
       def divider(options = {})
-        klass = 'divider'
-        klass = 'divider-vertical' if options[:vertical]
-        
+        klass = "divider#{options[:vertical] ? '-vertical' : ''}"
         template.content_tag :li, nil, class: klass
       end
       
       def header(title = nil, &block)
         body = title.nil? ? template.capture(self, &proc) : title
-        
         template.content_tag :li, body, class: 'nav-header'
       end
       
