@@ -16,6 +16,7 @@ module BootstrapHelper
       def wrapper(options, buffer)
         navbar_class = ['navbar']
         navbar_class << 'navbar-fixed-top' if options[:top]
+        navbar_class << 'navbar-fixed-bottom' if options[:bottom]
         navbar_class << 'navbar-inverse' if options[:inverse]
         id = options[:id] || ''
         
