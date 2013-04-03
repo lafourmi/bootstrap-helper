@@ -101,6 +101,11 @@ module BootstrapHelper
           3.times.map { template.content_tag :span, nil, class: 'icon-bar' }.inject(:+)
         end
       end
+      
+      def divider_vertical
+        template.content_tag :li, nil, class: 'divider-vertical'
+      end
+      
     end
   end
 end
