@@ -108,3 +108,20 @@ Or you can use like this :
   
   <% end %>
 ```
+
+Different uses :
+
+
+```ruby
+<% navbar do |bar| %>
+  ...
+<% end %>
+
+<% topbar do |bar| %>
+  ...
+<% end %>
+
+<% bottombar do |bar| %>
+  ...
+<% end %>
+```
