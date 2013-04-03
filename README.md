@@ -56,8 +56,10 @@ Simple use :
     
     <%= bar.nav do %>
       <%= bar.item 'item', '#' %>
+      <%= bar.divider( :vertical => true ) %>
       <%= bar.dropdown 'Title 1' do %>
         <%= bar.item 'item 1', '#' %>
+        <%= bar.divider %>
         <%= bar.item 'item 2', '#' %>
       <% end %>
     <% end %>

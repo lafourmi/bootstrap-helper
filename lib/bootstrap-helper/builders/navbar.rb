@@ -102,8 +102,11 @@ module BootstrapHelper
         end
       end
       
-      def divider_vertical
-        template.content_tag :li, nil, class: 'divider-vertical'
+      def divider(options = {})
+        klass = 'divider'
+        klass = 'divider-vertical' if options[:vertical]
+        
+        template.content_tag :li, nil, class: klass
       end
       
     end
