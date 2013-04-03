@@ -5,19 +5,6 @@ Include BootstrapHelper in Gemfile:
 gem 'bootstrap-helper',git: 'git://github.com/niedhui/bootstrap-helper.git'
 ```
 
-# topbar(Navigation)
-``` ruby
-- topbar do |bar|
-  = bar.brand_name "YourBrandName",root_path
-  = bar.nav do
-    = bar.item 'label1',               "/url/url"
-    = bar.dropdown "dropdown_menu" do
-      = bar.item 'label2',              "/url2/url2"
-      = bar.item 'label3',              "/url3/url3"
-  = bar.second_nav do     
-    = bar.item 'label4',               "/url4/url4"
-```
-
 # modal
 ``` ruby
 - modal id: "my_modal" do |m| 
@@ -42,4 +29,71 @@ gem 'bootstrap-helper',git: 'git://github.com/niedhui/bootstrap-helper.git'
     %li= link_to "bye",     bye_path
     %li.divider
     %li= link_to "nihao"
+```
+
+# tabs
+```ruby
+  <% tabs do |tab| %>
+    <%= tab.item "Tabs 1", { :active => true } do %>
+      <h1>Title 1</h1>
+      <p>Content 1</p>
+    <% end %>
+    <%= tab.item "Tabs 2" do %>
+      <h1>Title 2</h1>
+      <p>Content 2</p>
+    <% end %>
+  <% end %>
+```
+
+# navbar
+
+Simple use :
+
+```ruby
+  <% topbar do |bar| %>
+
+    <%= bar.brand_name "YourBrandName", root_path %>
+    
+    <%= bar.nav do %>
+      <%= bar.item 'item', '#' %>
+      <%= bar.dropdown 'Title 1' do %>
+        <%= bar.item 'item 1', '#' %>
+        <%= bar.item 'item 2', '#' %>
+      <% end %>
+    <% end %>
+    
+  <% end %>
+```
+
+Or you can use like this :
+
+
+```ruby
+  <% topbar( :inverse => true, :id => 'topBar' ) do |bar| %>
+
+    <%= bar.collapse %>
+    <%= bar.brand_name "YourBrandName", root_path %>
+
+    <%= bar.nav( :right => true ) do %>
+    
+      <%= bar.dropdown( :class => 'highlight' ) do %>
+        <%= bar.dropdown_title do %>
+          <span class="count">10</span>
+          <span class="title">Title 2</span>
+        <% end %>
+        <%= bar.dropdown_menu( :right => true ) do %>
+          <%= bar.item do %>
+            <span class="title">Item 3</span>
+          <% end %>
+          <%= bar.item 'item 4', '#' %>
+          <%= bar.item '/link' do %>
+            <span class="title">Item 5</span>
+            <span class="count">15</span>
+          <% end %>
+        <% end %>
+      <% end %>
+      
+    <% end %>
+  
+  <% end %>
 ```
