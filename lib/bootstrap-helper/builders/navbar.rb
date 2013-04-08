@@ -91,7 +91,8 @@ module BootstrapHelper
           options = args[2] || {}
         end
         
-        klass = options[:active] ? 'active' : ''
+        klass = options[:class] || []
+        klass << 'active' if options[:active]
         template.content_tag(:li, class: klass) do
           template.link_to(body, url)
         end
