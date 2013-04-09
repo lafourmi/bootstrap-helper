@@ -93,8 +93,10 @@ module BootstrapHelper
         
         klass = options[:class] || []
         klass << 'active' if options[:active]
+        data_toggle = options[:url_data_toggle] || ''
+        
         template.content_tag(:li, class: klass) do
-          template.link_to(body, url)
+          template.link_to(body, url, 'data-toggle' => data_toggle)
         end
       end
 
