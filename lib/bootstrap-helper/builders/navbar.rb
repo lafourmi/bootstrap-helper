@@ -34,9 +34,11 @@ module BootstrapHelper
         klass = ['nav']
         klass << 'pull-right' if options[:right]
         klass << 'pull-left' if options[:left]
+        klass_ul = ['nav']
+        klass_ul << options[:class] || ''
         
         template.content_tag( :nav, class: klass ) do
-          template.content_tag( :ul, buffer, class: 'nav')
+          template.content_tag( :ul, buffer, class: klass_ul)
         end
       end
 
@@ -101,7 +103,7 @@ module BootstrapHelper
       end
 
       def collapse
-        template.link_to  nil, :class => 'btn btn-navbar collapsed', "data-toggle" => 'collapse', 'data-target' => '.nav-collapse' do
+        template.content_tag(:button, nil, :class => 'btn btn-navbar collapsed', "data-toggle" => 'collapse', 'data-target' => '.nav-collapse') do
           3.times.map { template.content_tag :span, nil, class: 'icon-bar' }.inject(:+)
         end
       end
