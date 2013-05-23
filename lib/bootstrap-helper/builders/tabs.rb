@@ -14,13 +14,18 @@ module BootstrapHelper
       end
 
       def wrapper(options, buffer)
+        klass = options[:class] || 'nav-collapse'
+
         template.content_tag( :div, class: "tabbable" ) do
-          content = tabs_titles do
-            content_items = ''.html_safe
-            items.each do |item|
-              content_items << item_title( item[:name], item[:id], item[:klass] )
+          content = template.content_tag( :div, :class => 'navbar' ) do
+            content_div = collapse({:class => klass})
+            content_div << tabs_titles({:class => klass}) do
+              content_items = ''.html_safe
+              items.each do |item|
+                content_items << item_title( item[:name], item[:id], item[:klass] )
+              end
+              content_items
             end
-            content_items
           end
           
           content << template.content_tag( :div, class: "tab-content" ) do
@@ -28,10 +33,16 @@ module BootstrapHelper
           end
         end
       end
-  
+
+      def collapse(options = {})
+        template.content_tag(:button, nil, :class => 'btn btn-navbar', "data-toggle" => 'collapse', 'data-target' => ".#{options[:class]}") do
+          3.times.map { template.content_tag :span, nil, class: 'icon-bar' }.inject(:+)
+        end
+      end
+
       def tabs_titles(options = {}, &block)
         buffer = template.capture( self, &proc )
-        template.content_tag( :ul, buffer, class: "nav nav-tabs" )
+        template.content_tag( :ul, buffer, class: "nav nav-tabs #{options[:class]} collapse" )
       end
       
       def item_title(name, id, klass)
