@@ -53,6 +53,8 @@ module BootstrapHelper
       
       def item(name, options = {}, &block)
         klass = options[:active] ? "active" : ""
+        klass += " #{options[:class]}" unless options[:class].nil?
+
         id = name.downcase.parameterize.gsub(/-/, '_')
         
         items << { :name => name, :id => id, :klass => klass }
