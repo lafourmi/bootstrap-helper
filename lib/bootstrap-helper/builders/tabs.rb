@@ -22,7 +22,7 @@ module BootstrapHelper
             content_div << tabs_titles({:class => klass}) do
               content_items = ''.html_safe
               items.each do |item|
-                content_items << item_title( item[:name], item[:id], item[:klass] )
+                content_items << item_title( item[:name], item[:id], item[:klass], item[:title] )
               end
               content_items
             end
@@ -45,8 +45,8 @@ module BootstrapHelper
         template.content_tag( :ul, buffer, class: "nav nav-tabs #{options[:class]} collapse" )
       end
       
-      def item_title(name, id, klass)
-        template.content_tag( :li, nil, class: klass ) do
+      def item_title(name, id, klass, title)
+        template.content_tag( :li, nil, class: klass, :title => title ) do
           template.link_to name, "##{id}", :data => { :toggle => 'tab' }
         end
       end
@@ -54,10 +54,11 @@ module BootstrapHelper
       def item(name, options = {}, &block)
         klass = options[:active] ? "active" : ""
         klass += " #{options[:class]}" unless options[:class].nil?
+        title = options[:title] || ''
 
         id = name.downcase.parameterize.gsub(/-/, '_')
         
-        items << { :name => name, :id => id, :klass => klass }
+        items << { :name => name, :id => id, :klass => klass, :title => title }
         
         buffer = template.capture( self, &proc )
         template.content_tag( :div, buffer, class: "tab-pane #{klass}", :id => id )
